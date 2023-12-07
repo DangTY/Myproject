@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/mains.css" rel="stylesheet" type="text/css">
+    <link href="/css/adminProductList.css" rel="stylesheet" type="text/css">
+    <link href="/css/side.css" rel="stylesheet" type="text/css">
+    <title>index</title>
+    <script src="/js/jquery-3.7.0.min.js"></script>
+    <script src="/js/adminProductList.js"></script>
+</head>
+
+<body>
+<section>
+    <!--왼쪽사이드-->
+    <article class="left_side">
+        <div class="logo">
+            <img src="/img/mainLogo.png" alt="mainLogo">
+        </div>
+        <!-- 사이드 메뉴 네비 -->
+        <nav class="menu">
+            <ul class="navi">
+                <a href="#">
+                    <li><span>상품관리</span>
+                    </li>
+                </a>
+
+                <a href="">
+                    <li><span>주문관리</span>
+                    </li>
+                </a>
+
+                <a href="#">
+                    <li><span>상점관리</span>
+                    </li>
+                </a>
+            </ul>
+        </nav>
+    </article>
+    <!--오른쪽사이드-->
+    <article class="right_main_view">
+        <!--메인 이미지섹션-->
+        <div class="mainImg">
+            <div class="productList">
+                <h3>Product List</h3>
+                <form>
+                    <table border="1">
+                        <tr>
+                            <th name="num">
+                                번호
+                            </th>
+                            <th name="name">
+                                상품명
+                            </th>
+                            <th name="price">
+                                가격
+                            </th>
+                            <th name="img">
+                                이미지
+                            </th>
+                            <th name="txt">
+                                상품정보
+                            </th>
+                            <th name="color">
+                                색상
+                            </th>
+                            <th name="size">
+                                사이즈
+                            </th>
+                        </tr>
+                    {{#product}}
+                        <tr>
+                            <td name="num">
+                                {{productNum}}
+                            </td>
+                            <td name="name">
+                                {{productName}}
+                            </td>
+                            <td name="price">
+                                {{productPrice}}
+                            </td>
+                            <td name="img">
+                                {{productImg}}
+                            </td>
+                            <td name="txt">
+                                {{productTxt}}
+                            </td>
+                            <td name="color">
+                                {{productColor}}
+                            </td>
+                            <td name="size">
+                                {{productSize}}
+                            </td>
+                        </tr>
+                    {{/product}}
+                    </table>
+                    <a href="/product/{{product.productNum}}/edit" class="btn btn-primary" >수정하기</a>
+                    <a href="/product/{{product.productNum}}/delete" class="btn btn-danger" >삭제하기</a>
+                </form>
+            </div>
+        </div>
+
+        <div id="footer">
+            <div class="shop_footer">
+                <div class="textBox">
+                    <h1>
+                        Footer 영역
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="clear"></div> -->
+    </article>
+</section>
+
+<script>
+    jQuery(document).ready(function () {
+        $('.navi>li').mouseover(function () {
+            $(this).find('.submenu').stop().slideDown(500);
+        }).mouseout(function () {
+            $(this).find('.submenu').stop().slideUp(500);
+        });
+    });
+</script>
+</body>
+
+</html>

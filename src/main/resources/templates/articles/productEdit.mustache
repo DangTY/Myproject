@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/mains.css" rel="stylesheet" type="text/css">
+    <link href="/css/adminProduct.css" rel="stylesheet" type="text/css">
+    <link href="/css/side.css" rel="stylesheet" type="text/css">
+    <title>index</title>
+    <script src="/js/jquery-3.7.0.min.js"></script>
+</head>
+
+<body>
+<section>
+    <!--왼쪽사이드-->
+    <article class="left_side">
+        <div class="logo">
+            <img src="/img/mainLogo.png" alt="mainLogo">
+        </div>
+        <!-- 사이드 메뉴 네비 -->
+        <nav class="menu">
+            <ul class="navi">
+                <a href="#">
+                    <li><span>상품관리</span>
+                    </li>
+                </a>
+
+                <a href="">
+                    <li><span>주문관리</span>
+                    </li>
+                </a>
+
+                <a href="#">
+                    <li><span>상점관리</span>
+                    </li>
+                </a>
+            </ul>
+        </nav>
+    </article>
+    <!--오른쪽사이드-->
+    <article class="right_main_view">
+        <!--메인 이미지섹션-->
+        <div class="mainImg">
+            <div>
+                <form class="container" action="/product/update" method="post">
+                    <input value="{{product.productNum}}" type="hidden" name="productNum">
+                    <h2>상품등록</h2>
+                    <table border="1">
+                        <tr>
+                            <th>
+                                상품명
+                            </th>
+                            <td>
+                                <input value="{{product.productName}}" type="text" name="productName" id="productName">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                가격
+                            </th>
+                            <td>
+                                <input value="{{product.productPrice}}" type="text" name="productPrice" id="productPrice">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                색상
+                            </th>
+                            <td>
+                                <input value="{{product.productColor}}" type="text" name="productColor" id="productColor">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                사이즈
+                            </th>
+                            <td>
+                                <input value="{{product.productSize}}" type="text" name="productSize" id="productSize">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                상품설명
+                            </th>
+                            <td>
+                                <input value="{{product.productTxt}}" type="text" name="productTxt" id="productTxt">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                상품이미지
+                            </th>
+                            <td>
+                                <input value="{{product.productImg}}" type="file" name="productImg">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th colspan="2">
+                                <input type="submit" value="수정하기">
+                                <a href="/product/{{product.productNum}}">취소하기</a>
+                            </th>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+
+        <div id="footer">
+            <div class="shop_footer">
+                <div class="textBox">
+                    <h1>
+                        Footer 영역
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="clear"></div> -->
+    </article>
+</section>
+
+<script>
+    jQuery(document).ready(function () {
+        $('.navi>li').mouseover(function () {
+            $(this).find('.submenu').stop().slideDown(500);
+        }).mouseout(function () {
+            $(this).find('.submenu').stop().slideUp(500);
+        });
+    });
+</script>
+</body>
+
+</html>

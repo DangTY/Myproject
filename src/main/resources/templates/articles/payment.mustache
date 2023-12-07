@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/payment.css" rel="stylesheet" type="text/css">
+    <link href="/css/side.css" rel="stylesheet" type="text/css">
+    <title>관심 상품</title>
+    <script src="/js/jquery-3.7.0.min.js"></script>
+</head>
+
+<body>
+<header>
+    <nav class="icon_side">
+        <div>
+            <div class="icon_member">
+                <a href="#">
+                    <img src="/img/memberB.png" alt="member">
+                </a>
+            </div>
+            <div class="icon_basket">
+                <a href="#">
+                    <img src="/img/basket.png" alt="basket">
+                </a>
+            </div>
+        </div>
+    </nav>
+    <div class="clear"></div>
+</header>
+
+<section>
+    <!--왼쪽사이드-->
+    <article class="left_side">
+        <div class="logo">
+            <img src="/img/mainLogo.png" alt="mainLogo">
+        </div>
+        <!-- 사이드 메뉴 네비 -->
+        <nav class="menu">
+            <ul class="navi">
+                <li><span>PRODUCT</span>
+                    <ul class="submenu">
+                        <li><a href="#">ALL</a></li>
+                        <li><a href="#">TOP</a></li>
+                        <li><a href="#">OUTER</a></li>
+                        <li><a href="#">BOTTOM</a></li>
+                        <li><a href="#">ETC</a></li>
+                    </ul>
+                </li>
+
+                <li><span>ABOUT</span>
+                    <ul class="submenu">
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </li>
+
+                <li><span>NEW</span>
+                    <ul class="submenu">
+                        <li><a href="#">new</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </article>
+    <!--오른쪽사이드-->
+    <article class="right_main_view">
+        <!-- 주문/결제 -->
+        <form action="" method="">
+            <div id="payment_mid">
+                <div class="titlearea">
+                    <h1>주문/결제</h1>
+                </div>
+                <!-- 중간 구분선 -->
+                <div class="mid_background"></div>
+
+                <div class="address_title">
+                    <h2>배송지</h2>
+                </div>
+
+                {{#user}}
+                    <div class="deliver_address">
+                        <div class="address_mid">
+
+                            <table border="1">
+                                <tbody>
+                                <tr class="mid_table_name">
+                                    <th scope="row">
+                                        받는사람
+                                        <span class="required">*</span>
+                                    </th>
+                                    <td>
+                                        유저 이름(ex 홍길동)
+                                    </td>
+                                </tr>
+                                <tr class="mid_table_address">
+                                    <th scope="row">
+                                        주소
+                                        <span class="required">*</span>
+                                    </th>
+                                    <td>
+                                        <ul class="adress_block">
+                                            <li>
+                                                <input id="input_text" class="search_address" type="text"
+                                                       placeholder="우편번호">
+                                                <button>주소검색</button>
+                                            </li>
+                                            <li>
+                                                <input id="input_text_long" class="detail_address" type="text"
+                                                       placeholder="기본주소">
+                                            </li>
+                                            <li>
+                                                <input id="input_text_long" class="detail_address" type="text"
+                                                       placeholder="상세주소(선택)">
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr class="mid_table_phone">
+                                    <th scope="row">
+                                        휴대전화
+                                        <span class="required">*</span>
+                                    </th>
+                                    <td>
+                                        유저 전화번호(ex 010-1234-5678)
+                                    </td>
+                                </tr>
+                                <tr class="mid_table_email">
+                                    <th scope="row">
+                                        이메일
+                                        <span class="required">*</span>
+                                    </th>
+                                    <td>
+                                        유저 이메일(ex abcd@naver.com)
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                {{/user}}
+
+                <div class="message_select">
+                    <select name="message" id="message">
+                        <option value="m1">-- 메시지 선택 (선택사항) --</option>
+                        <option value="m2">배송 전에 미리 연락바랍니다.</option>
+                        <option value="m3">부재 시 경비실에 맡겨주세요.</option>
+                        <option value="m4">부재 시 문 앞에 놓아주세요.</option>
+                        <option value="m5">빠른 배송 부탁드립니다.</option>
+                        <option value="m6">택배함에 보관해 주세요.</option>
+                        <option value="direct">직접입력</option>
+                    </select>
+
+                    <textarea id="selboxDirect" name="selboxDirect"></textarea>
+                </div>
+
+                <div class="address_save">
+                    <label>
+                        <input type="checkbox" name="address_save" id="address_save">
+                        기본 배송지로 저장
+                    </label>
+                </div>
+
+                <div class="mid_background"></div>
+
+                <div class="order_product">
+                    <h1>주문상품</h1>
+                </div>
+
+                {{#paymentPopup}}
+                    <div class="order_product_list">
+                        <div class="row-data">
+                            <div class="img"><img src="http://192.168.2.37/images/b/{{productImg}}"></div>
+                            <div class="mid-info">
+                                <div class="name">
+                                    <span>{{productName}}</span>
+                                    <!-- 삭제 버튼 -->
+                                    <button class="box" onclick="none()">
+                                        x
+                                    </button>
+                                </div>
+                                <!-- 상품 옵션  -->
+                                <div class="option">
+                                    <span>[옵션 : BLACK]</span>
+                                </div>
+                                {{#popup}}
+                                <div class="number">
+                                    <span>수량 : {{popupCount}}</span>
+                                </div>
+                                {{/popup}}
+                                <div class="price">
+                                    <span>가격 : {{productPrice}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 배송비 -->
+                    <div class="delivery_price">
+                        <div class="d_b1">배송비</div>
+                        <div class="d_b2">3,000원</div>
+                    </div>
+
+                    <div class="mid_background"></div>
+
+                    <!-- 최종 결제 금액 -->
+                    <div class="payment_price">
+                        <div class="d_b1">최종 결제 금액</div>
+                        <div class="d_b2">31,200원</div>
+                    </div>
+
+                    <div class="mid_background"></div>
+
+                    <!-- 결제수단 -->
+                    <div class="payment_method">
+                        <h1>결제수단</h1>
+                    </div>
+
+                    <!-- 결제수단 상세란 -->
+                    <div class="payment_method_detail">
+                        <!-- 테이블 -->
+                        <h3>결제수단 선택</h3>
+
+                        <div class="method_detail_radio">
+                            <div class="radio_pad">
+                                <input type="radio" id="option1" name="option" value="1">
+                                <label for="option1">카드결제</label>
+                            </div>
+                            <div class="radio_pad">
+                                <input type="radio" id="option2" name="option" value="2">
+                                <label for="option2">에스크로(실시간 계좌이체)</label>
+                            </div>
+                            <div class="radio_pad">
+                                <input type="radio" id="option3" name="option" value="3">
+                                <label for="option3">휴대폰 결제</label>
+                            </div>
+                            <div class="radio_pad">
+                                <input type="radio" id="option4" name="option" value="4">
+                                <label for="option4">무통장 입금</label>
+                            </div>
+                        </div>
+
+                        <!-- 문구 -->
+                        <p>- 소액 결제의 경우 PG사 정책에 따라 결제 금액 제한이 있을 수 있습니다.</p>
+                    </div>
+
+                    <!-- 결제수단과 입력정보를~~ -->
+                    <div class="payment_method_info">
+                        <label>
+                            <input type="checkbox" name="payment_save" id="payment_save">
+                            결제수단과 입력정보를 다음에도 사용
+                        </label>
+                    </div>
+
+                    <!-- 결제하기 버튼 -->
+                    <div class="payment_button">
+                        <input id="payment_btn" type="submit">결제하기</button>
+                    </div>
+                {{/paymentPopup}}
+        </form>
+
+        </div>
+
+        <div id="footer">
+            <div class="shop_footer">
+                <div class="textBox">
+                    <h1>
+                        Footer 영역
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </article>
+</section>
+
+<script>
+    //메인 사이드 슬라이드
+    jQuery(document).ready(function () {
+        $('.navi>li').mouseover(function () {
+            $(this).find('.submenu').stop().slideDown(500);
+        }).mouseout(function () {
+            $(this).find('.submenu').stop().slideUp(500);
+        });
+    });
+
+    function none() {
+        document.querySelector(".row-data").style.display = "none";
+    }
+
+    // 이메일 직접입력 쿼리
+
+    // 도메인 직접 입력 or domain option 선택
+    const domainListEl = document.querySelector('#email')
+    const domainInputEl = document.querySelector('#email_txt2')
+    // select 옵션 변경 시
+    domainListEl.addEventListener('change', (event) => {
+        // option에 있는 도메인 선택 시
+        if (event.target.value !== "type") {
+            // 선택한 도메인을 input에 입력하고 disabled
+            domainInputEl.value = event.target.value
+            domainInputEl.disabled = true
+        } else { // 직접 입력 시
+            // input 내용 초기화 & 입력 가능하도록 변경
+            domainInputEl.value = ""
+            domainInputEl.disabled = false
+        }
+    })
+
+    $(function () {
+        //직접입력 인풋박스 기존에는 숨어있다가
+        $("#selboxDirect").hide();
+        $("#message").change(function () {
+            //직접입력을 누를 때 나타남
+            if ($("#message").val() == "direct") {
+                $("#selboxDirect").show();
+            } else {
+                $("#selboxDirect").hide();
+            }
+        })
+    });
+
+    function CheckValue() {
+        let _ID = document.getElementById("name").value;
+        let ID_Label = document.getElementById("NAME_Chk");
+
+        if (_ID === "" || _ID == undefined) {
+            ID_Label.style.display = "block";
+            document.getElementById("name").style.border = "1px solid red";
+            document.getElementById("name").style.width = "740px";
+            document.getElementById("name").style.padding = "5px";
+        }
+        else {
+            ID_Label.style.display = "none";
+            document.getElementById("name").style = "none";
+        }
+    }
+
+    function CheckValue2() {
+        let _PHONE1 = document.getElementById("phone1").value;
+        let _PHONE2 = document.getElementById("phone2").value;
+        let PHONE_Label = document.getElementById("PHONE_Chk");
+
+        if (_PHONE1 === "" || _PHONE1 == undefined || _PHONE2 === "" || _PHONE2 == undefined) {
+            PHONE_Label.style.display = "block";
+            document.getElementById("phone1").style.border = "1px solid red";
+            document.getElementById("phone1").style.width = "200px";
+            document.getElementById("phone1").style.padding = "5px";
+            document.getElementById("phone2").style.border = "1px solid red";
+            document.getElementById("phone2").style.width = "200px";
+            document.getElementById("phone2").style.padding = "5px";
+        }
+        else if (_PHONE1 === "" || _PHONE1 == undefined) {
+            PHONE_Label.style.display = "block";
+            document.getElementById("phone1").style.border = "1px solid red";
+            document.getElementById("phone1").style.width = "200px";
+            document.getElementById("phone1").style.padding = "5px";
+        }
+        else if (_PHONE2 === "" || _PHONE2 == undefined) {
+            PHONE_Label.style.display = "block";
+            document.getElementById("phone2").style.border = "1px solid red";
+            document.getElementById("phone2").style.width = "200px";
+            document.getElementById("phone2").style.padding = "5px";
+        }
+        else {
+            PHONE_Label.style.display = "none";
+            document.getElementById("phone1").style = "none";
+            document.getElementById("phone2").style = "none";
+        }
+    }
+
+    function CheckValue3() {
+        let _EMAIL1 = document.getElementById("email_txt1").value;
+        let _EMAIL2 = document.getElementById("email_txt2").value;
+        let EMAIL_Label = document.getElementById("EMAIL_Chk");
+
+        if (_EMAIL1 === "" || _EMAIL1 == undefined || _EMAIL2 === "" || _EMAIL2 == undefined) {
+            EMAIL_Label.style.display = "block";
+            document.getElementById("email_txt1").style.border = "1px solid red";
+            document.getElementById("email_txt1").style.width = "200px";
+            document.getElementById("email_txt1").style.padding = "5px";
+            document.getElementById("email_txt2").style.border = "1px solid red";
+            document.getElementById("email_txt2").style.width = "200px";
+            document.getElementById("email_txt2").style.padding = "5px";
+        }
+        else if (_EMAIL1 === "" || _EMAIL1 == undefined) {
+            EMAIL_Label.style.display = "block";
+            document.getElementById("email_txt1").style.border = "1px solid red";
+            document.getElementById("email_txt1").style.width = "200px";
+            document.getElementById("email_txt1").style.padding = "5px";
+        }
+        else if (_EMAIL2 === "" || _EMAIL2 == undefined) {
+            EMAIL_Label.style.display = "block";
+            document.getElementById("email_txt2").style.border = "1px solid red";
+            document.getElementById("email_txt2").style.width = "200px";
+            document.getElementById("email_txt2").style.padding = "5px";
+        }
+        else {
+            EMAIL_Label.style.display = "none";
+            document.getElementById("email_txt1").style = "none";
+            document.getElementById("email_txt2").style = "none";
+        }
+    }
+</script>
+</body>
+
+</html>
